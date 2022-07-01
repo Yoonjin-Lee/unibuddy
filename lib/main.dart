@@ -6,7 +6,8 @@ import './favorite.dart';
 import './profile.dart';
 import './search.dart';
 import './write.dart';
-import './alarm.dart';
+import './chat.dart';
+import './home.dart';
 
 void main() {
   runApp(const MyApp());
@@ -51,59 +52,66 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   int _selectedIndex = 0;
   final screens = [
-    const LikePage(),
+    const ListPage(),
     const SearchPage(),
     const WritePage(),
-    const AlarmPage(),
-    const ProfilePage()
+    const LikePage(),
+    const AlarmPage()
   ];
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('UniBuddy'),
-        leading: IconButton(
-          icon: const Icon(Icons.menu),
-          onPressed: () {
-            //추가 필요
-          },
-        ),
-        actions: [
-          IconButton(
-            icon: const Icon(Icons.login),
+    return SafeArea(
+      child: Scaffold(
+        appBar: AppBar(
+          title: const Text('UniBuddy'),
+          leading: IconButton(
+            icon: const Icon(Icons.menu),
             onPressed: () {
-              Navigator.pushNamed(context, '/login');
+              //추가 필요
             },
-          )
-        ],
-      ),
-      body: screens[_selectedIndex],
-      bottomNavigationBar: BottomNavigationBar(
-        items: const <BottomNavigationBarItem>[
-          BottomNavigationBarItem(
-            icon: Icon(Icons.favorite),
-            label: '찜한 목록',
           ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.search),
-            label: '검색',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.add_circle),
-            label: '글쓰기',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.notifications),
-            label: '알림',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.account_circle),
-            label: '프로필',
-          ),
-        ],
-        currentIndex: _selectedIndex,
-        onTap: (index) => setState(() => _selectedIndex = index),
+          centerTitle: true,
+          actions: [
+            IconButton(
+              icon: const Icon(Icons.account_circle_sharp),
+              onPressed: () {
+                Navigator.pushNamed(context, '/profile');
+              },
+            )
+          ],
+        ),
+        body: screens[_selectedIndex],
+        bottomNavigationBar: BottomNavigationBar(
+          selectedFontSize: 15,
+          unselectedFontSize: 10,
+          selectedItemColor: Colors.black,
+          unselectedItemColor: Colors.blue,
+          items: const <BottomNavigationBarItem>[
+            BottomNavigationBarItem(
+              icon: Icon(Icons.home),
+              label: '홈',
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.search),
+              label: '검색',
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.add_circle),
+              label: '글쓰기',
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.favorite),
+              label: '찜한 목록',
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.chat),
+              label: '채팅',
+            ),
+          ],
+          currentIndex: _selectedIndex,
+          onTap: (index) => setState(() => _selectedIndex = index),
+        ),
       ),
     );
   }

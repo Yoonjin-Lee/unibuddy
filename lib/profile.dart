@@ -11,14 +11,23 @@ class _ProfilePageState extends State<ProfilePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('프로필'),
-        leading: IconButton(
-          onPressed: () {},
-          icon: const Icon(Icons.navigate_before),
-        ),
+      body: ListView(
+        children: [
+          const SizedBox(height: 100),
+          const Text(
+            '프로필',
+            textAlign: TextAlign.center,
+            style: TextStyle(
+              fontSize: 25,
+            ),
+          ),
+          const SizedBox(height: 30,),
+          const Icon(
+            Icons.account_circle_sharp,
+            size: 200,
+          )
+        ],
       ),
-
     );
   }
 }
